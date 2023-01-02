@@ -5,7 +5,7 @@ using namespace std;
 
 string prefixString(string str1, string str2){
     string ret = "";
-    int l1 = str1.length();
+    int l1 = str1.length(); //Cambiar por sizeof(str1)
     int l2 = str2.length();
 
     for (int i = 0; i < l1 && i < l2; i++){
@@ -29,6 +29,8 @@ int main (){
     string [4] prueba = {"ABC", "AB", "ABB", "ABE"};
     string solucion = DACPrefix(prueba, 0, prueba.length() -1);
     cout << solucion << endl;
+
+    return 0;
 }
 
 //ERRORES:
