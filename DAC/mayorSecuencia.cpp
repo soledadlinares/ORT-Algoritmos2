@@ -41,7 +41,7 @@ int DACMaxSecuencia (int arr [], int inicio, int fin){
 
 int main (){
     int arr [] = {-2, -5, 4, -2, -3, 1, -5, -6};
-    int maxSec = DACMaxSecuencia(arr, 0, sizeof(arr)-1);
+    int maxSec = DACMaxSecuencia(arr, 0, sizeof(arr)/sizeof(int) -1);
 
     cout << maxSec << endl;
     return 0;
