@@ -18,7 +18,7 @@ int DACMochila01 (int capacidad, int fin, int valores [], int pesos []){
 }
 
 //Mochila 0-inf
-int DACMochilainf (int capacidad, int fin, int valores [], int pesos []){
+int DACMochila0inf (int capacidad, int fin, int valores [], int pesos []){
     if (capacidad == 0 || fin < 0) return 0; 
     if (pesos[fin] > capacidad) return DACMochila0inf(capacidad, fin, valores, pesos);
 
