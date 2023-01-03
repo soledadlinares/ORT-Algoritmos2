@@ -17,7 +17,16 @@ int DACMochila01 (int capacidad, int fin, int valores [], int pesos []){
     return max(valorMochilaUsandoObjeto, valorMochilaSinObjeto);
 }
 
+//Mochila 0-inf
+int DACMochilainf (int capacidad, int fin, int valores [], int pesos []){
+    if (capacidad == 0 || fin < 0) return 0; 
+    if (pesos[fin] > capacidad) return DACMochila0inf(capacidad, fin - 1, valores, pesos);
 
+    int valorMochilaUsandoObjeto = valores[fin] + DACMochila0inf(capacidad - pesos[fin], fin, valores, pesos); //podemos seguir usando el objeto
+    int valorMochilaSinObjeto = DACMochila0inf(capacidad, fin, valores, pesos);
+
+    return max(valorMochilaUsandoObjeto, valorMochilaSinObjeto);
+}
 
 int main (){
     int valores [] = {60, 100, 120};
