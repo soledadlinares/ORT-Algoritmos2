@@ -4,10 +4,11 @@
 #include <cmath>
 using namespace std;
 
-//Algoritmo que reciba un array y retorne la posicion del mayor elemento multiplo de 3.
-//Si no hay multiplos de 3 se retorna -1
-//Si el mayor multiplo se repite se podra retornar la posicion de cualquiera de sus ocurrencias.
-//SE DEBE DIVIDIR EL PROBLEMA DE FORMA BALANCEADA.
+//PROBLEMA DE PARCIAL
+/*Algoritmo que reciba un array y retorne la posicion del mayor elemento multiplo de 3.
+Si no hay multiplos de 3 se retorna -1
+Si el mayor multiplo se repite se podra retornar la posicion de cualquiera de sus ocurrencias.
+SE DEBE DIVIDIR EL PROBLEMA DE FORMA BALANCEADA.*/
 
 bool esMultiploDeTres(int a){
     return a % 3 == 0;
