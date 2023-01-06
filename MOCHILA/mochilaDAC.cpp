@@ -4,7 +4,9 @@
 #include <cmath>
 using namespace std;
 
-
+int max (int a, int b){
+    return a > b ? a : b;
+}
 
 //Vamos a hacer una mochila 0-1 --> retornando el valor en la mochila
 int DACMochila01 (int capacidad, int fin, int valores [], int pesos []){
