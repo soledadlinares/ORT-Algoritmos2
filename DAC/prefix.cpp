@@ -5,17 +5,17 @@ using namespace std;
 
 string prefixString(string str1, string str2){
     string ret = "";
-    int l1 = str1.length(); //Cambiar por sizeof(str1)
-    int l2 = str2.length();
+    int l1 = str1.size(); 
+    int l2 = str2.size();
 
     for (int i = 0; i < l1 && i < l2; i++){
-        if(str1.charAt(i) == str2.charAt(i)) ret += str1.charAt(i);
+        if(str1[i] == str2[i]) ret += str1[i];
     }
 
     return ret;
 }
 
-string DACPrefix(string[] prueba, int inicio, int fin){
+string DACPrefix(string prueba [], int inicio, int fin){
     if(inicio == fin) return prueba[inicio];
     int mitad = (fin + inicio) / 2;
 
@@ -26,8 +26,8 @@ string DACPrefix(string[] prueba, int inicio, int fin){
 }
 
 int main (){
-    string [4] prueba = {"ABC", "AB", "ABB", "ABE"};
-    string solucion = DACPrefix(prueba, 0, prueba.length() -1);
+    string prueba [] = {"ABC", "AB", "ABB", "ABE"};
+    string solucion = DACPrefix(prueba, 0, (sizeof(prueba)/sizeof(string)) -1);
     cout << solucion << endl;
 
     return 0;
