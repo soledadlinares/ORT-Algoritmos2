@@ -34,6 +34,6 @@ int pisicionDelMayorMultiploDeTres(int arr [], int inicio, int fin){
 
 int main (){
     int valores [] = {3, -15, 100, 27, 49, 9, 27, 200, 8};
-
+    cout << pisicionDelMayorMultiploDeTres(valores, 0, 8); << endl;
     return 0;
 }
