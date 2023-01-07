@@ -21,7 +21,7 @@ void cambio (int billetes [], int cantBilletes, int costo, int pago) {
             int billete = billetes[j];
             int cantidad = entregar/billete;
             entregar = entregar % billete;
-            cout << "Se entregan " << cantidad << " billetes de " << billete << endl;
+            if (cantidad != 0) cout << "Se entregan " << cantidad << " billetes de " << billete << endl;
         }
     }
 }
