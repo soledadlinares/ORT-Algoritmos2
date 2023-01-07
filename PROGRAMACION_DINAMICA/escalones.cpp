@@ -21,7 +21,7 @@ using namespace std;
    f(n) = f(n-1) + f(n-2) -->Es fibonacci 
 */
 
-//MEMOIZACION
+//MEMOIZACION -- TOP DOWN
 int escalonesMemoizacion(int n, int * res){
     if(n == 0 || n == 1 || n == 2) return n;
     if (res[n] == -1) {
@@ -36,7 +36,7 @@ int escalones_v1(int n){
     return escalonesMemoizacion(n, res);
 }
 
-//TABULACION
+//TABULACION --> BOTTOM UP
 long escalonesTabulacion(int n){
     int * tab = new int[n+1]();
     tab[0] = 1;
