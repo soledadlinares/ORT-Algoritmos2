@@ -7,7 +7,7 @@ using namespace std;
 long fiboVignaMemo(int n, int m, long ** memo, bool ** yaCalculado){
     if(n == 0 || m == 0) return 3;
     if (n + m == 3) return 8;
-    if (!yaCalculado){
+    if (!yaCalculado[n][m]){
         memo[n][m] = fiboVignaMemo(n, m-1, memo, yaCalculado) + fiboVignaMemo(n - 1, m, memo, yaCalculado) + fiboVignaMemo(n - 1, m - 1, memo, yaCalculado);
         yaCalculado[n][m] = true;
     }
