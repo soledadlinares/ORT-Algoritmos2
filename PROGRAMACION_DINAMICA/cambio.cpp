@@ -70,15 +70,53 @@ void problemaDelCambioGuardandoMonedas(int resto){
     
 }
 
+void problemaDelCambioV2(int cambio, int monedas [], int cantTiposMonedas){
+    int * tab = new int [cambio + 1] ();
+    int * use = new int [cambio + 1] ();
+    tab[0] = 0;
+    use[0] = 0;
+    for (int i = 1; i <= cambio; i++){
+        int menor = INT_MAX;
+        int monedaUsada = INT_MAX;
+        for (int j = 0; j < cantTiposMonedas; j++)
+        {
+            //si el valor de la moneda es menor que el cambio a dar
+            if (monedas[j] <= i)
+            {
+                //si es posible de usar la moneda
+                if (tab[i - monedas[j]] != INT_MAX)
+                {
+                    if (menor > tab[i - monedas[j]])
+                    {
+                        menor = tab[i - monedas[j]];
+                        monedaUsada = monedas[j];
+                    }  
+                } 
+            }
+        }
+        //pude dar cambio
+        if(menor < INT_MAX){
+            tab[i] = 1 + menor;
+            use[i] = monedaUsada;
+        } else{
+            //no pude dar cambio
+            tab[i] = menor;
+            use[i] = monedaUsada;
+        }
+    }
+    if(tab[cambio] == INT_MAX) cout << "No pude dar el cambio" << endl;
+    else cout << "La cantidad minima de monedas es " << tab[cambio] << endl;
+}
 
 
 int main (){
+    int monedas [] = {5, 3, 10};
     cout << "Introduzca un monto: ";
     int n;
     cin >> n;
 
-    problemaDelCambioGuardandoMonedas(n);
-
+    //problemaDelCambioGuardandoMonedas(n);
+    problemaDelCambioV2(n, monedas, 3);
 
     return 0;
 }
