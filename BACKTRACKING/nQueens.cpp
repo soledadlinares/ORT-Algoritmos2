@@ -4,6 +4,10 @@
 #include <cassert>
 using namespace std;
 
+/*
+    El problema es de colocar las reinas en un tablero sin que se amenacen
+*/
+
 void colocoReina(int fila, int columna, bool ** tablero){
     tablero[fila][columna] = true;
 }
