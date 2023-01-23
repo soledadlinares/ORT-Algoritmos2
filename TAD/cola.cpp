@@ -1,5 +1,3 @@
-#ifndef COLA
-#define COLA
 #include <climits>
 #include <string>
 #include <iostream>
