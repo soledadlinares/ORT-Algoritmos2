@@ -5,17 +5,10 @@
 using namespace std;
 
 template <class T>
-
 struct NodoLista{
     T dato;
     NodoLista * sig;
     NodoLista() : dato(NULL), sig(NULL) {};
-};
-
-struct ImplementacionCola{
-    unsigned int cantidad_elementos;
-    NodoLista * principio;
-    NodoLista * final;
 };
 
 struct Arista{
@@ -27,43 +20,44 @@ struct Arista{
 
 typedef NodoLista<Arista> * ListaAristas;
 
-typedef ImplementacionCola * Cola;
-
+template <class T>
 class Cola{
     private:
-        Cola cola;
+        unsigned int cantidad_elementos;
+        NodoLista<T> * principio;
+        NodoLista<T> * final;
 
     public:
         Cola(){
-            this->cola.cantidad_elementos = 0;
-            this->cola.principio = NULL;
-            this->cola.final = NULL;
+            this->cantidad_elementos = 0;
+            this->principio = NULL;
+            this->final = NULL;
         }
 
         ~Cola(){
-            while(this->cola.principio != NULL){
-                NodoLista * borrar = this->desencolar();
+            while(this->principio != NULL){
+                NodoLista<T> * borrar = this->desencolar();
                 delete borrar;
                 borrar = NULL;
             }
         }
 
         void encolar(T elemento){
-            NodoLista * nuevo = new NodoLista<T>();
+            NodoLista<T> * nuevo = new NodoLista();
             nuevo->dato = elemento;
-            nuevo->sig = this->cola.final;
-            this->cola.final = nuevo;
-            this->cola.cantidad_elementos++;
+            nuevo->sig = this->final;
+            this->final = nuevo;
+            this->cantidad_elementos++;
         }
 
         bool esVacia(){
-            return this->cola.cantidad_elementos == 0;
+            return this->cantidad_elementos == 0;
         }
 
         T desencolar(){
-            NodoLista * desencolar = this->cola.principio;
-            this->cola.principio = desencolar->sig;
-            this->cola.cantidad_elementos--;
+            NodoLista<T> * desencolar = this->principio;
+            this->principio = desencolar->sig;
+            this->cantidad_elementos--;
             return desencolar;
         }
 
@@ -87,7 +81,7 @@ class Grafo{
             for(int i = 1; i <= V; i++){
                 this->matriz[i] = new int [V + 1]();
                 for (int j = 1; j <= V; j++){
-                    this->matriz[i][j] = INF;
+                    this->matriz[i][j] = INT_MAX;
                 }
             }
         }
@@ -99,10 +93,10 @@ class Grafo{
         }
 
         ListaAristas adyacentesA(int vertice){
-            int inf = INF;
-            ListaAristas * retorno = NULL;
+            int inf = INT_MAX;
+            ListaAristas retorno = NULL;
             for(int i = 1; i <= this->V; i++){
-                if(this->matriz[vertice][i] != INF){
+                if(this->matriz[vertice][i] != INT_MAX){
                     Arista * aux = new Arista();
                     aux->origen = vertice;
                     aux->destino = i;
@@ -116,8 +110,8 @@ class Grafo{
         }
 };
 
-int initGradoEntrada(Grafo * g, int vertice){
-    int * retorno = new int [g->V + 1]();
+int * initGradoEntrada(Grafo * g, int vertice){
+    int retorno = new int [vertice + 1]();
     for (int i = 1; i <= vertice; i++){
         ListaAristas adyacentes = g->adyacentesA(i);
         while(adyacentes != NULL){
@@ -140,14 +134,14 @@ bool * initVisitados (int vertice){
 
 void ordenTopologico (Grafo * g, int origen){
     int * gradoEntrada = initGradoEntrada(g, origen);
-    Cola<int> cola;
+    Cola cola = new Cola<int>();
     int vertice = 0;
     int contador = 0;
-    for(int i = 1; i <= V ; i++){
-        if(gradoEntrada[i] == 0) cola.encolar(i);
+    for(int i = 1; i <= V ; i++){ //tengo que ver de donde saco ese V
+        if(gradoEntrada[i] == 0) cola->encolar(i);
     }
     while (!cola.esVacia()){
-        vertice = cola.desencolar();
+        vertice = cola->desencolar();
         contador++;
         cout << vertice << endl;
         ListaAristas adyacentesAV = g->adyacentesA(vertice);
@@ -155,7 +149,7 @@ void ordenTopologico (Grafo * g, int origen){
             int v_aux = adyacentesAV->dato.destino;
             gradoEntrada[v_aux]--;
             if(gradoEntrada[v_aux] == 0){
-                cola.encolar(v_aux);
+                cola->encolar(v_aux);
                 adyacentesAV = adyacentesAV->sig;
             }
         }
