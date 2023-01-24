@@ -163,11 +163,11 @@ int main (){
 
     Grafo *gDirNoPon = new Grafo(4, true, false);
 
-    gDirNoPon->aniadirArista(1, 3);
-    gDirNoPon->aniadirArista(3, 4);
-    gDirNoPon->aniadirArista(2, 4);
-    gDirNoPon->aniadirArista(2, 3);
-    gDirNoPon->aniadirArista(1, 2);
+    gDirNoPon->agregarArista(1, 3);
+    gDirNoPon->agregarArista(3, 4);
+    gDirNoPon->agregarArista(2, 4);
+    gDirNoPon->agregarArista(2, 3);
+    gDirNoPon->agregarArista(1, 2);
 
     ordenacionTopologica(gDirNoPon, 4);
 
